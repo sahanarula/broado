@@ -1,0 +1,23 @@
+{
+   "name": "new-app",
+   "main": "app/test.html",
+   "window": {
+	"icon": "app/images/logo.png",
+	"frame"  : true,
+	"toolbar": true,
+ 	"width"  : 750,
+	"height" : 550,
+	"resizable": false
+    },
+    "webkit": {
+        "plugin": true
+    },
+    
+    "dependencies": {
+        "nodewebkit": "^0.9.2-7"
+    },
+    
+    "scripts": {
+         "start": "nodewebkit"
+    }
+}

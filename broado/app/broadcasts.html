@@ -1,0 +1,23 @@
+<div class="row" id="broads">
+	<a ng-click="refresh()" id="refresh">Refresh</a>
+	<img src="images/loading.gif" ng-show="broadsload">
+	<table class="table">
+		<tr style="text-align:center;">
+			<th><h4>Time</h4></th>
+			<th><h4>User</h4></th>
+			<th><h4>Song</h4></th>
+			<th style="padding-left:28px !important;"><h4>Counts</h4></th>
+		</tr>
+	</table>
+	<div class="row nano" infinite-scroll="getBroads()" infinite-scroll-distance="0">
+		<table class="table table-hover no">
+			<tr ng-repeat="broads in broadcasts">
+				<td><h6><span class="glyphicon glyphicon-time"> </span>&emsp;{{broads.created_at}}</h6></td>
+				<td><h6><span class="glyphicon glyphicon-user"> </span>&emsp;{{broads.username}}</h6></td>
+				<td><h6><span class="glyphicon glyphicon-music"> </span>&emsp;{{broads.song}}</h6> </h6></td>
+				<td><h6><span class="glyphicon glyphicon-thumbs-up" ng-click="up($index, broads.id)"> </span>&emsp;{{broads.count}}&emsp;<span class="glyphicon glyphicon-thumbs-down" ng-click="down($index, broads.id)"> </span> </h6></td>
+			</tr>
+		</table>
+			<a ng-click="getBroads()" style="margin-left:45%; cursor:pointer; padding-bottom: 50px; color:white;">Load More</a>
+	</div>
+</div>

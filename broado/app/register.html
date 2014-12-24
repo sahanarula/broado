@@ -1,0 +1,37 @@
+<div class="row register" id="list">
+	<div class="col-xs-6" id="signin">
+		<form role="form">
+		  <div class="form-group">
+		    <label for="exampleInputEmail1">Username</label>
+		    <input type="text" class="form-control input-sm" id="username1" placeholder="Enter Username" ng-model="login_username">
+		  </div>
+		  <div class="form-group">
+		    <label for="exampleInputPassword1">Password</label>
+		    <input type="password" class="form-control input-sm" id="password1" placeholder="Enter Password" ng-model="login_password">
+		  </div>
+		  <div class="checkbox">
+		    <label >
+		      <input type="checkbox" style="margin-left:310px; width:13px;" ng-model="remember"> <br> Remember me
+		    </label>
+		  </div>
+		  <button type="submit" class="btn btn-success" ng-click="login()">Login</button>
+		</form>
+	</div>
+	<div class="col-xs-6" id="register">
+		<form role="form">
+		  <div class="form-group">
+		    <label for="exampleInputEmail1">Username</label>
+		    <input type="text" class="form-control input-sm" id="exampleInputEmail1" placeholder="Enter Username" ng-model="register_username" >
+		  </div>
+		  <div class="form-group">
+		    <label for="exampleInputPassword1">Password</label>
+		    <input type="password" class="form-control input-sm" id="exampleInputPassword1" placeholder="Password" ng-model="register_password">
+		  </div>
+		  <div class="form-group">
+		    <label for="exampleInputPassword1">Confirm Password</label>
+		    <input type="password" class="form-control input-sm" id="exampleInputPassword1" placeholder="Confirm Password" ng-model="register_confirm">
+		  </div>
+		  <button type="submit" class="btn btn-primary" ng-click="register()">Register</button>
+		</form>
+	</div>
+</div>
