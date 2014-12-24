@@ -1,6 +1,6 @@
 {
    "name": "new-app",
-   "main": "app/test.html",
+   "main": "app/index.html",
    "window": {
 	"icon": "app/images/logo.png",
 	"frame"  : true,
@@ -20,4 +20,4 @@
     "scripts": {
          "start": "nodewebkit"
     }
-}
+}
