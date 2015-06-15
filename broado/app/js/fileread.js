@@ -15,14 +15,16 @@ function readDirectory(directory, $rootScope){
           .on('dir', function(dir, stat) {
           })
           .on('file', function(file, stat) {
-            var validExt = ['wav', 'mp3', 'ogg'];
-            var name = file.split('\\').pop().split('.').splice(0);
+            var validExt = ['wav', 'mp3', 'ogg', 'mp4'];
+            var name = file.substr(file.lastIndexOf('/')+1);
+            console.log(name);
             for(var i=0; i<validExt.length; i++){
-              if(file.split('.').pop() == validExt[i]){
+              if(file.substr(file.lastIndexOf('.')+1) == validExt[i]){
                 /*var meta = readMeta(file);*/
-                $rootScope.list.push([name[0], file]);
+                $rootScope.list.push([name, file]);
               }
             }
+            console.log($rootScope.list);
           })
           .on('end', function() {
             $rootScope.load=false;

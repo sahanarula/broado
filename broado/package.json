@@ -3,10 +3,10 @@
    "main": "app/index.html",
    "window": {
 	"icon": "app/images/logo.png",
-	"frame"  : true,
-	"toolbar": true,
+	"frame"  : false,
+	"toolbar": false,
  	"width"  : 750,
-	"height" : 550,
+	"height" : 500,
 	"resizable": false
     },
     "webkit": {
@@ -20,4 +20,4 @@
     "scripts": {
          "start": "nodewebkit"
     }
-}
+}

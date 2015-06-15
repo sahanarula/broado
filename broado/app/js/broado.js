@@ -54,10 +54,11 @@ app.factory('LocalService', ['$rootScope', function($rootScope){
 app.factory('AudioService', function($rootScope, LocalService, $location){
 	return {
 		loadsingle: function(song){
+			console.log(song);
 			$rootScope.song = song;
 			$rootScope.player.load();
 			// $rootScope.currentSong = song.split('\\').pop();
-			$rootScope.currentSong = song;
+			$rootScope.currentSong = $rootScope.song.substr($rootScope.song.lastIndexOf('/')+1);
 			console.log($rootScope.currentSong);
 			var meta = readMeta(song);
 			try{
@@ -94,6 +95,9 @@ app.factory('AudioService', function($rootScope, LocalService, $location){
 			}
 		},
 		updateDirectory: function(path){
+			console.log('checking in between');
+			path = path.substring(0, path.lastIndexOf('/'))
+			console.log(path);
 			LocalService.set('directory', path);
 			console.log(LocalService.get('directory'));
 			readDirectory(LocalService.get('directory'), $rootScope);
@@ -103,7 +107,6 @@ app.factory('AudioService', function($rootScope, LocalService, $location){
 			this.loadsingle(song[1]);
 		},
 		play: function(){
-			$('.viewer .cover img').css('opacity', '0');
 			$rootScope.player.play();
 			$rootScope.pause = false;
 			$rootScope.isactive = true;			
@@ -119,6 +122,7 @@ app.factory('AudioService', function($rootScope, LocalService, $location){
 			$location.path('/single');
 		},
 		pause: function(){
+			$('.viewer .cover img').css('opacity', '0');
 			$rootScope.player.pause();
 			$rootScope.pause = true;
 		},
@@ -183,9 +187,9 @@ app.run(['$rootScope', 'LocalService', '$http', 'AudioService', '$location', fun
 		    var tmpImg = new Image() ;
 		    tmpImg.src = $rootScope.urlArtist;
 		    tmpImg.onload = function(){
-				$rootScope.loadingArtist = false;
-				// $rootScope.$apply();
 				$('.viewer .cover img').attr('src', tmpImg.src).css('opacity', '1');
+				$rootScope.loadingArtist = false;
+				$rootScope.$apply();
 		    }
 			console.log($rootScope.urlArtist);
 		})
@@ -243,11 +247,12 @@ app.controller('LogoutController', ['$scope', '$rootScope', '$http', '$location'
 	})
 }])
 
-app.controller('ListController', ['$scope', '$rootScope', 'AudioService', 'LocalService', function ($scope, $rootScope, AudioService, LocalService) {
+app.controller('ListController', ['$scope', '$rootScope', 'AudioService', 'LocalService', '$location', function ($scope, $rootScope, AudioService, LocalService, $location) {
 		var directory = LocalService.get('directory');
 		console.log(directory);
 		$rootScope.list = [];
 		readDirectory(directory, $rootScope);
+		$location.path('/playlist');
 		$scope.load = function(song){
 			AudioService.load(song);
 		}
